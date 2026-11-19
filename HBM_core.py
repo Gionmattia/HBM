@@ -638,10 +638,8 @@ def compile_results_run(trace_negbin, inputs_dict, mass_threshold = 0.95, rope_u
 def factor_plot(df, inputs_dict, outpath=None):
     df = df.sort_values('Mean RTA', ascending=False)
 
-    # Visualization
     fig, ax = plt.subplots(figsize=(10, max(6, inputs_dict["n_levels"] * 0.4)))
 
-    # Sort by mean efficiency for plotting
     df_plot = df.sort_values('Mean RTA')
 
     y_pos = np.arange(len(df_plot))
@@ -649,7 +647,6 @@ def factor_plot(df, inputs_dict, outpath=None):
     ci_lower = df_plot['95% CI Lower'].values
     ci_upper = df_plot['95% CI Upper'].values
 
-    # Plot error bars
     ax.errorbar(means, y_pos,
                 xerr=[means - ci_lower, ci_upper - means],
                 fmt='o', markersize=8, capsize=5, capthick=2,
@@ -680,7 +677,7 @@ def runs_plot(df, mass_threshold = 0.95, outpath=None):
     df = df.sort_values(['level', 'Mean RTA']).reset_index(drop=True)
 
     # Assign x positions with gaps between groups
-    gap = 1  # extra space between groups
+    gap = 1
     x_pos = []
     group_centers = {}
     current_x = 0
